@@ -1,0 +1,47 @@
+version: "2"
+services:
+    db:
+        image: postgres
+        container_name: {{ cookiecutter.project_slug }}_db
+        environment:
+            - POSTGRES_DB=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        volumes:
+            - /usr/lib/postgresql
+            - .:/usr/app/
+    web: &web
+        build: .
+        container_name: {{ cookiecutter.project_slug }}_web
+        command: "python manage.py runserver 0.0.0.0:8000"
+        ports:
+            - "8000:8000"
+        volumes:
+            - .:/usr/app
+        working_dir: /usr/app
+        links:
+            - db:db
+            - redis:redis
+{%- if cookiecutter.use_celery == "y" %}
+            - worker:worker
+{%- endif %}
+        environment:
+            PYTHONPATH: /usr/app/project
+            DJANGO_SETTINGS_MODULE: project.settings.local
+            SHELL: /bin/bash
+{%- if cookiecutter.use_celery == "y" %}
+    worker:
+        <<: *web
+        container_name: {{ cookiecutter.project_slug }}_worker
+        command: "celery -A app worker -l info"
+        ports: []
+        links:
+            - db:db
+            - redis:redis
+{%- endif %}
+    redis:
+        image: redis:latest
+        container_name: {{ cookiecutter.project_slug }}_redis
+        restart: always
+        ports:
+            - "6379:6379"

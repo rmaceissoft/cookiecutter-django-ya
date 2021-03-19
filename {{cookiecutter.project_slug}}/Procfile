@@ -1,0 +1,5 @@
+release: python manage.py migrate
+web: gunicorn project.wsgi --log-file -
+{%- if cookiecutter.use_celery == "y" %}
+worker: celery -A app worker
+{%- endif %}
