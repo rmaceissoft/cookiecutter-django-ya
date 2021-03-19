@@ -1,7 +1,7 @@
 Yet Another Cookiecutter Django
 ===============================
 
-A Django boilerplate powered by Cookiecutter_.
+A Django boilerplate powered by Cookiecutter_
 
 
 Features
@@ -24,14 +24,17 @@ Optional Integrations
 
 *These features can be enabled during initial project setup.*
 
-* Configuration for Celery_ and Flower_ (the latter in Docker setup only)
+* Configuration for Celery_
+* Configuration for Django Rest Framework (drf_)
 
+.. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
 .. _Poetry: https://python-poetry.org/
 .. _django-environ: https://github.com/joke2k/django-environ
 .. _12-Factor: http://12factor.net/
 .. _Procfile: https://devcenter.heroku.com/articles/procfile
 .. _Celery: http://www.celeryproject.org/
 .. _docker-compose: https://github.com/docker/compose
+.. _drf: https://www.django-rest-framework.org/
 
 
 Usage
