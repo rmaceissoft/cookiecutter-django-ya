@@ -12,7 +12,6 @@ Features
 * Python dependency management via Poetry_
 * 12-Factor_ based settings via django-environ_
 * Optimized development and production settings
-* Media storage using Amazon S3 or Google Cloud Storage
 * Docker support using docker-compose_ for development
 * Procfile_ for deploying to Heroku
 
@@ -52,7 +51,3 @@ Now run it against this repo::
     $ cookiecutter https://github.com/rmaceissoft/cookiecutter-django-ya
 
 You'll be prompted for some values. Provide them, then a Django project will be created for you.
-
-**Warning**: After this point, change 'Daniel Greenfeld', 'pydanny', etc to your own information.
-
-Answer the prompts with your own desired options.
